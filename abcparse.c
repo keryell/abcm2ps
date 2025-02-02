@@ -3,7 +3,7 @@
  *
  * This file is part of abcm2ps.
  *
- * Copyright (C) 1998-2021 Jean-François Moine (http://moinejf.free.fr)
+ * Copyright (C) 1998-2025 Jean-François Moine (http://moinejf.free.fr)
  * Adapted from abc2ps, Copyright (C) 1996-1998 Michael Methfessel
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -1583,6 +1583,8 @@ char *parse_acc_pit(char *p,
 				d = strtol(p, &q, 10);
 				p = q;
 			}
+		} else {
+			d = 256;		// assume a temperament equal
 		}
 		if (microscale == 0) {
 			d--;

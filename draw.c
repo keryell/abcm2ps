@@ -3,7 +3,7 @@
  *
  * This file is part of abcm2ps.
  *
- * Copyright (C) 1998-2020 Jean-François Moine (http://moinejf.free.fr)
+ * Copyright (C) 1998-2025 Jean-François Moine (http://moinejf.free.fr)
  * Adapted from abc2ps, Copyright (C) 1996-1998 Michael Methfessel
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -984,7 +984,8 @@ static void draw_acc(int acc, int microscale)
 		a2b("%d %s%d ", n, acc_tb[acc & 0x07], d);
 	} else {
 		if (acc >> 3 != 0
-		 && cfmt.nedo)		// %%MIDI temperamentequal <nedo>
+		 && cfmt.nedo		// %%MIDI temperamentequal <nedo>
+		 && (n & 255) == 255)	// short accidental: "|" | "^" n (d == nedo)
 			n = ((((n >> 8) + 1) * 12) - 1) * 256 + cfmt.nedo - 1;
 		a2b("%s%d ", acc_tb[acc & 0x07], n);
 	}
