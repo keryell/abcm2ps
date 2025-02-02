@@ -3,7 +3,7 @@
  *
  * This file is part of abcm2ps.
  *
- * Copyright (C) 1998-2021 Jean-François Moine (http://moinejf.free.fr)
+ * Copyright (C) 1998-2024 Jean-François Moine (http://moinejf.free.fr)
  * Adapted from abc2ps, Copyright (C) 1996-1998 Michael Methfessel
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -516,8 +516,7 @@ delsym2:
 /* -- try to combine voices */
 static void combine_voices(void)
 {
-	struct SYMBOL *s, *s2, *g;
-	int i, r;
+	struct SYMBOL *s, *s2;
 
 	for (s = tsfirst; s->ts_next; s = s->ts_next) {
 		if (s->combine < 0)
@@ -525,41 +524,7 @@ static void combine_voices(void)
 //		if (s->combine == 0
 //		 && s->abc_type != ABC_T_REST)
 //			continue;
-		if (s->sflags & S_IN_TUPLET) {
-			g = s->extra;
-			if (!g)
-				continue;	/* tuplet already treated */
-			r = 0;
-			for ( ; g; g = g->next) {
-				if (g->type == TUPLET
-				 && g->u.tuplet.r_plet > r)
-					r = g->u.tuplet.r_plet;
-			}
-			if (r == 0)
-				continue;
-			i = r;
-			for (s2 = s; s2; s2 = s2->next) {
-				if (!s2->ts_next)
-					break;
-				if (s2->type != NOTEREST)
-					continue;
-				if (!may_combine(s2))
-					break;
-				if (--i <= 0)
-					break;
-			}
-			if (i > 0)
-				continue;
-			for (s2 = s; /*s2*/; s2 = s2->next) {
-				if (s2->type != NOTEREST)
-					continue;
-				do_combine(s2);
-				if (--r <= 0)
-					break;
-			}
-			continue;
-			
-		}
+
 		if (s->type != NOTEREST)
 			continue;
 
