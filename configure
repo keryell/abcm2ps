@@ -2,8 +2,8 @@
 set -e -f -u
 
 # (automatic update)
-VERSION=${v#v}
-VDATE=$m
+VERSION=8.14.16
+VDATE=2025-02-14
 
 # Variables may be set, by order of precedence:
 # * in the environment,

@@ -48,7 +48,7 @@ rule version
 	fi;$
 	m=`date +%F`;$
 	mv configure configure~;$
-	sed -e 's/^VERSION.*/VERSION=$${v#v}/;s/^VDATE.*/VDATE=$$m/' configure~ > configure;$
+	sed -e "s/^VERSION.*/VERSION=$${v#v}/;s/^VDATE.*/VDATE=$$m/" configure~ > configure;$
 	chmod +x configure;$
 	fossil commit -m "New release $$v" -tag $$v;$
 	echo "Don't forget: ./configure"
