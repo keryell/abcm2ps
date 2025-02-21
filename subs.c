@@ -3,7 +3,7 @@
  *
  * This file is part of abcm2ps.
  *
- * Copyright (C) 1998-2019 Jean-François Moine (http://moinejf.free.fr)
+ * Copyright (C) 1998-2025 Jean-François Moine (http://moinejf.free.fr)
  * Adapted from abc2ps, Copyright (C) 1996-1998 Michael Methfessel
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -353,6 +353,8 @@ static char *good_tb[] = {
 	if (!desc_tb[fnum]) {
 		p = font_name;
 		q = fontnames[fnum];
+	   if(0)			// don't change the font names
+					// because other font when only ASCII
 		for (i = 0; i < sizeof bad_tb / sizeof bad_tb[0]; i++) {
 			if (strncmp(q, bad_tb[i], strlen(bad_tb[i])) == 0) {
 				p += sprintf(p, "%s", good_tb[i]);
