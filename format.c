@@ -13,6 +13,7 @@
  */
 
 #include <stdlib.h>
+#include <stdbool.h>
 #include <string.h>
 #include <ctype.h>
 
@@ -1160,13 +1161,13 @@ void interpret_fmt_line(char *w,		/* keyword */
 		}
 		if (strcmp(w, "writehistory") == 0) {	/* compatibility */
 			struct SYMBOL *s;
-			int bool;
+			bool boolv;
 			unsigned u;
 
-			bool = get_bool(p);
+			boolv = get_bool(p);
 			for (s = info['I' - 'A']; s != 0; s = s->next) {
 				u = s->text[0] - 'A';
-				if (bool)
+				if (boolv)
 					cfmt.fields[0] |= (1 << u);
 				else
 					cfmt.fields[0] &= ~(1 << u);
@@ -1217,7 +1218,7 @@ void interpret_fmt_line(char *w,		/* keyword */
 			}
 			break;
 		case 1:	{			/* %%writefields */
-			int bool;
+			bool boolv;
 			unsigned u;
 
 			q = p;
@@ -1225,7 +1226,7 @@ void interpret_fmt_line(char *w,		/* keyword */
 				p++;
 			while (isspace((unsigned char) *p))
 				p++;
-			bool = get_bool(p);
+			boolv = get_bool(p);
 			while (*q != '\0' && !isspace((unsigned char) *q)) {
 				u = *q - 'A';
 				if (u < 26) {
@@ -1237,7 +1238,7 @@ void interpret_fmt_line(char *w,		/* keyword */
 					else
 						break;	/*fixme: error */
 				}
-				if (bool)
+				if (boolv)
 					cfmt.fields[i] |= (1 << u);
 				else
 					cfmt.fields[i] &= ~(1 << u);
