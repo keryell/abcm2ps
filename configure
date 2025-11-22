@@ -30,7 +30,7 @@ done
 # also expanded by the shell and need a default value.
 : "${PKG_CONFIG=${host+$host-}pkg-config}"
 : "${prefix=/usr/local}"
-: "${srcdir=.}"
+: "${srcdir=$(realpath --relative-to=. $(dirname $0))}"
 
 case "$srcdir" in
     *\ *)
