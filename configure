@@ -2,8 +2,8 @@
 set -e -f -u
 
 # (automatic update)
-VERSION=8.14.17
-VDATE=2025-02-16
+VERSION=8.14.18
+VDATE=2026-01-28
 
 # Variables may be set, by order of precedence:
 # * in the environment,
