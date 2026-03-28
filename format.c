@@ -475,6 +475,9 @@ void set_format(void)
 	set_infoname("N \"Notes: \"");
 	set_infoname("Z \"Transcription: \"");
 	set_infoname("H \"History: \"");
+	set_infoname("A \"Area: \"");
+	set_infoname("F \"File: \"");
+	set_infoname("G \"Group: \"");
 }
 
 /* -- print the current format -- */
